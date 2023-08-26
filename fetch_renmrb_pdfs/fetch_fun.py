@@ -1,6 +1,6 @@
 # @Version: python3.10
 # @Time: 2023/8/25 16:57
-# @Author: MaxBrooks
+# @Author: PlutoCtx
 # @Email: 15905898514@163.com
 # @File: fetch_fun.py
 # @Software: PyCharm
