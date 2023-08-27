@@ -65,8 +65,10 @@ def fetch_rmrb_paper(res_list):
             # http://... +  2023-08/25/ + /XX
             tem = temp + str(j).zfill(2)
             # /rmrb2023082520.pdf'
-            string = str(j).zfill(2) + '/rmrb' + "".join([c for c in i if c not in characters_to_remove]) + str(
-                j).zfill(2) + ".pdf"
+            string = str(j).zfill(2) \
+                     + '/rmrb' \
+                     + "".join([c for c in i if c not in characters_to_remove]) \
+                     + str(j).zfill(2) + ".pdf"
 
             print(temp + string)
             # 发送GET请求下载PDF文件
@@ -120,7 +122,8 @@ def fetch_rmrb_paper(res_list):
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         # 生成文件的完整路径
-        total_file_path = os.path.join(output_path, i.replace("/", "-") + ".pdf")
+        total_file_path = os.path.join(output_path,
+                                       i.replace("/", "-") + ".pdf")
 
         # 将合并后的 PDF 保存到指定路径
         pdf_merger.write(total_file_path)
@@ -132,8 +135,8 @@ def sort_by_date_and_number(file_name):
     match = re.search(r'\d+', file_name)  # 匹配文件名中的连续数字部分
     if match:
         number = int(match.group())  # 提取连续数字部分并转换为整数
-        return (file_name[4:12], number)
-    return (file_name, 0)  # 如果没有数字部分，则按原始文件名排序
+        return file_name[4: 12], number
+    return file_name, 0  # 如果没有数字部分，则按原始文件名排序
 
 
 def get_weekday(now_time):
@@ -142,12 +145,19 @@ def get_weekday(now_time):
     :return: 0 for Mon, 1 for Thu ...
     """
     # 使用多个分隔符拆分字符串
-    y, m, d = re.split(r"[-/]", now_time)
+    y, m, d = re.split(r"[-/]",
+                       now_time)
 
-    date = datetime.datetime(int(y), int(m), int(d))
+    date = datetime.datetime(int(y),
+                             int(m),
+                             int(d))
     weekday = date.weekday()
 
-    print(int(y), int(m), int(d), weekday)
+    print(int(y),
+          int(m),
+          int(d),
+          weekday)
+
     return weekday
 
 
@@ -172,4 +182,3 @@ if __name__ == '__main__':
     fetch_rmrb_paper(res_list)
 
     print("文件保存成功！")
-    # get_weekday("2023-8/25")
