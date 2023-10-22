@@ -41,10 +41,10 @@ def init_date(start_date, end_date):
     return date_list
 
 
-def fetch_rmrb_paper(res_list):
+def fetch_people_daily_paper(res_list):
     """
     to get People's Daily's everyday newspaper,
-    first, get a day's every single paper, save it as named 'rmrb2022040101' and saved in folder '\files\yyyy-MM\dd'
+    first, get a day's every single paper, save it as named 'rmrb2022040101' and saved in folder '\\files\\yyyy-MM\\dd'
     second, generate the single paper into a complete one day's paper
     :param res_list:list of date that are in defined duration
     :return: files saved
@@ -179,6 +179,6 @@ if __name__ == '__main__':
     start_date = input("input start date like 'yyyy-MM-dd':")
     end_date = input("input end date like 'yyyy-MM-dd':")
     res_list = init_date(start_date, end_date)
-    fetch_rmrb_paper(res_list)
+    fetch_people_daily_paper(res_list)
 
     print("文件保存成功！")
