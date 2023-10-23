@@ -31,12 +31,21 @@ def fetch_online_codes(url):
 
 
 def get_article_items(soup, classname):
+    """
+    to get the message we need.
+    :param soup:    BeautifulSoup, to parse a
+    (possibly invalid) document into a tree representation. Beautiful Soup
+    provides methods and Pythonic idioms that make it easy to navigate,
+    search, and modify the parse tree.
+    :param classname:   the class name in the text
+    :return: all the message of the class
+    """
     return soup.find_all(class_=classname)
 
 
 def handle_article_info(cur_content, article_info):
     """
-    to format the article info
+    format the article info
     :param cur_content:     current content
     :param article_info:    article information
     :return:    formatted and added content
@@ -58,7 +67,6 @@ def fetch_opinion_articles(url):
                 contents, remarks and hot talks
 
     """
-
     html_content = fetch_online_codes(url)
 
     # 新建 BeautifulSoup 对象，对html内容进行解析
@@ -73,6 +81,17 @@ def fetch_opinion_articles(url):
     # 获取文章具体内容
     article_contents = get_article_items(soup, "artCon")
 
+    joint_article(article_title, article_info, article_contents)
+
+
+def joint_article(article_title, article_info, article_contents):
+    """
+    joint the article
+    :param article_title:  title
+    :param article_info:    info
+    :param article_contents:    contents
+    :return:    jointed article
+    """
     # 整文拼接
     all_content = ""
     try:
@@ -93,8 +112,8 @@ def fetch_opinion_articles(url):
 
         all_content += content
 
-        with open('opinion.txt', 'a') as f:
-            f.write(all_content)
+        with open('opinion.txt', 'a') as file:
+            file.write(all_content)
         print(all_content)
 
     except:
